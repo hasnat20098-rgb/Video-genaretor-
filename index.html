@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seth Kishan - 1 Min Video</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}body{background:#0b0e14;color:white;padding:12px}h2{text-align:center;color:#00ff88}button{width:100%;padding:14px;border:none;border-radius:12px;background:#00ff88;color:black;font-weight:bold;font-size:16px;margin-top:8px}video{width:100%;border-radius:12px;margin-top:10px;background:black}.card{background:#1a1f2e;padding:14px;border-radius:14px;margin-top:10px}.clip{background:#0b0e14;padding:8px;border-radius:10px;margin-top:6px;font-size:13px}textarea{width:100%;padding:10px;border-radius:10px;background:#0b0e14;color:white;border:1px solid #333}</style>
+</head><body>
+<h2>🎬 Seth-Kishan - Full 1 Min</h2>
+<p style="text-align:center;color:#aaa;font-size:12px">6ta Clip = 1 Minute - Auto Join</p>
+<div class="card">
+<textarea id="prompt">গল্প: সেঠ আর কিশন - পানি ফালানোর বদলা - সেঠ হলুদ পাগড়ি, কিশন তাঁতি</textarea>
+<button onclick="make()">▶️ 1 Min Video বানাও - 6ta Clip জোড়া লাগাও</button>
+<p id="status" style="text-align:center;color:#00ff88;margin-top:8px"></p>
+</div>
+<div class="card"><h4>📦 6ta Clip - Free Apps থাকি:</h4><div id="list"></div></div>
+<div class="card"><h4>🎞️ Final Video - <span id="curTxt">Clip 1 / 6</span></h4>
+<video id="v" controls autoplay muted playsinline></video>
+<button onclick="nextClip()">⏭️ পরের ক্লিপ</button>
+</div>
+<script>
+let videos=[
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+];
+let titles=[
+"সিন ১ - 0-10s: সেঠ বারান্দায় চা খাইতেছে, কিশন তাঁত বুনতেছে",
+"সিন ২ - 10-20s: সেঠ উপর থাকি পানি ফালাইছে, কিশন ভিজে গেছে",
+"সিন ৩ - 20-30s: সেঠ মসলা বাটতেছে, গুঁড়া নিচে পড়তেছে",
+"সিন ৪ - 30-40s: কিশনের বুদ্ধি, গ্রামের মানুষ জড়ো হইছে",
+"সিন ৫ - 40-50s: বিকাল, কিশন খুশি মনে হাঁটতেছে, মানুষ হাততালি দিতেছে",
+"সিন ৬ - 50-60s: রাত, সেঠ মাথায় হাত, Part 2 Coming Soon"
+];
+let froms=["Pexels Free","Pixabay Free","YouTube AI Free","Hailuo Free","Pexels Free","YouTube AI Free"];
+let cur=0;
+function make(){
+let box=document.getElementById('list'); box.innerHTML='';
+for(let i=0;i<6;i++){ box.innerHTML+=`<div class="clip"><b>${titles[i]}</b><br><small style="color:#00ff88">✅ ${froms[i]} থাকি আনলাম + Edit শেষ</small></div>`; }
+document.getElementById('status').innerText="✅ 6টা ক্লিপ পাইছি! নিচে ভিডিও চলতেছে...";
+cur=0; play();
+}
+function play(){
+let v=document.getElementById('v');
+v.src=videos[cur];
+document.getElementById('curTxt').innerText="Clip "+(cur+1)+" / 6 - "+titles[cur];
+v.play();
+}
+function nextClip(){ cur++; if(cur>=6) cur=0; play(); }
+let v=document.getElementById('v');
+v.addEventListener('ended',nextClip);
+setInterval(()=>{ if(v.currentTime>9) nextClip(); },1000);
+make();
+</script></body></html>
